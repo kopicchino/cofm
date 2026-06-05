@@ -1,0 +1,171 @@
+/* =========================================================
+   BASE.CSS — Design tokens, reset, global utilities, blobs
+   ========================================================= */
+
+:root {
+  /* Typography */
+  --font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  /* Brand / Accent */
+  --color-accent:        #a78bfa;
+  --color-accent-dim:    rgba(167, 139, 250, 0.18);
+  --color-accent-glow:   rgba(167, 139, 250, 0.30);
+  --color-accent-dark:   #7c3aed;
+  --gradient-accent:     linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+  --gradient-text:       linear-gradient(135deg, #f0eeff 0%, #a78bfa 100%);
+
+  /* Backgrounds */
+  --color-bg:            #0d0c14;
+  --color-surface:       rgba(255, 255, 255, 0.055);
+  --color-surface-hover: rgba(255, 255, 255, 0.085);
+  --color-input-bg:      rgba(255, 255, 255, 0.07);
+  --color-input-hover:   rgba(255, 255, 255, 0.09);
+
+  /* Borders */
+  --color-border:        rgba(255, 255, 255, 0.10);
+  --color-border-focus:  rgba(167, 139, 250, 0.55);
+
+  /* Text */
+  --color-text:          #f0eeff;
+  --color-text-sub:      #9893b5;
+  --color-text-muted:    #5a5578;
+
+  /* Feedback */
+  --color-success:       #4ade80;
+  --color-error:         #f87171;
+  --color-warning:       #fbbf24;
+
+  /* Radius */
+  --radius-sm:  8px;
+  --radius-md:  14px;
+  --radius-lg:  20px;
+  --radius-xl:  28px;
+  --radius-full: 9999px;
+
+  /* Spacing */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+
+  /* Shadow */
+  --shadow-card:    0 8px 40px rgba(0, 0, 0, 0.55);
+  --shadow-glow:    0 0 32px var(--color-accent-glow);
+  --shadow-btn:     0 4px 20px rgba(124, 58, 237, 0.40);
+  --shadow-btn-lg:  0 8px 32px rgba(124, 58, 237, 0.55);
+
+  /* Sidebar */
+  --sidebar-width: 260px;
+}
+
+/* ── Reset ───────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+img    { display: block; max-width: 100%; }
+button { cursor: pointer; font-family: inherit; border: none; background: none; }
+a      { color: inherit; text-decoration: none; }
+input, textarea, select { font-family: inherit; }
+ul, ol { list-style: none; }
+
+/* ── Utility ─────────────────────────────────────────── */
+.hidden           { display: none !important; }
+.visually-hidden  {
+  position: absolute;
+  width: 1px; height: 1px;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Gradient text helper */
+.gradient-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Animated Background Blobs ───────────────────────── */
+.bg-blobs {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.16;
+  animation: blobFloat 16s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.blob-1 {
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
+  top: -200px; left: -200px;
+  animation-duration: 18s;
+}
+
+.blob-2 {
+  width: 550px; height: 550px;
+  background: radial-gradient(circle, #a855f7 0%, transparent 70%);
+  bottom: -100px; right: -100px;
+  animation-delay: -7s;
+  animation-duration: 14s;
+}
+
+.blob-3 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, #6366f1 0%, transparent 70%);
+  top: 45%; left: 45%;
+  animation-delay: -12s;
+  animation-duration: 20s;
+}
+
+@keyframes blobFloat {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(40px, 50px) scale(1.1); }
+  100% { transform: translate(-30px, 20px) scale(0.92); }
+}
+
+/* ── Page animations ─────────────────────────────────── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
